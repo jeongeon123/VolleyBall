@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - ground_p1
+  - ground_p2
   - Ground
   layers:
   - Default

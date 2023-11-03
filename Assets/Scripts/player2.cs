@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class dmstn : MonoBehaviour
+public class player2 : MonoBehaviour
 {
     public float maxSpeed;
     public float jumpPower;
@@ -21,17 +21,17 @@ public class dmstn : MonoBehaviour
     void Update()
     {
         
-        if (Input.GetButtonUp("Horizontal"))
+        if (Input.GetButtonUp("player2_h"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
         
-        if (Input.GetButtonDown("Horizontal"))
+        if (Input.GetButtonDown("player2_h"))
         {
-            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+            spriteRenderer.flipX = Input.GetAxisRaw("player2_h") == -1;
         }
         
-        if (Input.GetButtonDown("Jump") && !isJumping)
+        if (Input.GetButtonDown("player2_j") && !isJumping)
         {
             isJumping = true;
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -41,7 +41,7 @@ public class dmstn : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("ground_p1") | collision.gameObject.CompareTag("ground_p2"))
         {
             isJumping = false;
         }
@@ -49,7 +49,7 @@ public class dmstn : MonoBehaviour
     
     void FixedUpdate()
     {
-        float h = Input.GetAxisRaw("Horizontal");
+        float h = Input.GetAxisRaw("player2_h");
         rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
 
         if (rigid.velocity.x > maxSpeed)
