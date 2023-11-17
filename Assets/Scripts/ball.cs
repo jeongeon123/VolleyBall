@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ball : MonoBehaviour
+public class Ball : MonoBehaviour
 {
     Rigidbody2D rigid;
     void Awake()
@@ -13,19 +13,19 @@ public class ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ground_p1"))
         {
-            GameObject.Find("score_p2").GetComponent<score_p2>().AddScore(1);
+            GameObject.Find("GameManager").GetComponent<GameManager>().AddScore(2,1);
             transform.position = new Vector3(8.885f, 5f, 0f);
-            rigid.velocity = Vector2.zero;
-            GameObject.Find("player1").GetComponent<player1>().resetPos();
-            GameObject.Find("player2").GetComponent<player2>().resetPos();
+            rigid.velocity = Vector3.zero;
+            GameObject.Find("player1").GetComponent<Player1>().resetPos();
+            GameObject.Find("player2").GetComponent<Player2>().resetPos();
         }
         else if (collision.gameObject.CompareTag("ground_p2"))
         {
-            GameObject.Find("score_p1").GetComponent<score_p1>().AddScore(1);
+            GameObject.Find("GameManager").GetComponent<GameManager>().AddScore(1,1);
             transform.position = new Vector3(-8.885f, 5f, 0f);
-            rigid.velocity = Vector2.zero;
-            GameObject.Find("player1").GetComponent<player1>().resetPos();
-            GameObject.Find("player2").GetComponent<player2>().resetPos();
+            rigid.velocity = Vector3.zero;
+            GameObject.Find("player1").GetComponent<Player1>().resetPos();
+            GameObject.Find("player2").GetComponent<Player2>().resetPos();
         }
 
     }
