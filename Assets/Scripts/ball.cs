@@ -16,12 +16,16 @@ public class ball : MonoBehaviour
             GameObject.Find("score_p2").GetComponent<score_p2>().AddScore(1);
             transform.position = new Vector3(8.885f, 5f, 0f);
             rigid.velocity = Vector2.zero;
+            GameObject.Find("player1").GetComponent<player1>().resetPos();
+            GameObject.Find("player2").GetComponent<player2>().resetPos();
         }
         else if (collision.gameObject.CompareTag("ground_p2"))
         {
             GameObject.Find("score_p1").GetComponent<score_p1>().AddScore(1);
             transform.position = new Vector3(-8.885f, 5f, 0f);
             rigid.velocity = Vector2.zero;
+            GameObject.Find("player1").GetComponent<player1>().resetPos();
+            GameObject.Find("player2").GetComponent<player2>().resetPos();
         }
 
     }

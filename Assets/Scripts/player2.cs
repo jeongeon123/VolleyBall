@@ -10,11 +10,13 @@ public class player2 : MonoBehaviour
 
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    Transform tr;
     
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        tr = GetComponent<Transform>();
         isJumping = false;
     }
     
@@ -33,19 +35,19 @@ public class player2 : MonoBehaviour
         
         if (Input.GetButtonDown("player2_j") && !isJumping)
         {
-            isJumping = true;
+            //isJumping = true;
             rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
            
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("ground_p1") | collision.gameObject.CompareTag("ground_p2"))
-        {
-            isJumping = false;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("ground_p1") | collision.gameObject.CompareTag("ground_p2"))
+    //    {
+    //        isJumping = false;
+    //    }
+    //}
     
     void FixedUpdate()
     {
@@ -60,6 +62,19 @@ public class player2 : MonoBehaviour
         {
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
         }
+        if (tr.position.y < -7)
+        {
+            isJumping = false;
+        }
+        else
+        {
+            isJumping = true;
+        }
+    }
+    public void resetPos()
+    {
+        transform.position = new Vector3(8.885f, -6f, 0f);
+        rigid.velocity = Vector2.zero;
     }
 }
 
